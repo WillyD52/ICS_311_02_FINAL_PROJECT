@@ -1,39 +1,39 @@
 <div id="menu-left">
 
-<a href="movie_releases.php">
-  	<div <?php if($left_selected == "RELEASES")
+<a href="movies_movies.php">
+  	<div <?php if($left_selected == "MOVIES")
   	{ echo 'class="menu-left-current-page"'; } ?>>
-  	<img src="./images/releases.png">
-  	<br/>Releases<br/></div>
+  	<img src="./images/movies.png">
+  	<br/>Movies<br/></div>
   </a>
 
 
-  <a href="movie_warnings.php">
-  	<div <?php if($left_selected == "WARNINGS")
+  <a href="movies_data.php">
+  	<div <?php if($left_selected == "DATA")
   	{ echo 'class="menu-left-current-page"'; } ?>>
-  	<img src="./images/warnings.png">
-  	<br/>Warnings<br/></div>
+  	<img src="./images/data.png">
+  	<br/>Data<br/></div>
   </a>
 
-  <a href = "movie_errors.php">
-  	<div <?php if($left_selected == "ERRORS")
+  <a href = "movies_media.php">
+  	<div <?php if($left_selected == "MEDIA")
   	{ echo 'class="menu-left-current-page"'; } ?>>
-  	<img src="./images/errors.png">
-  	<br/>Errors<br/></div>
+  	<img src="./images/media.png">
+  	<br/>MEDIA<br/></div>
   </a>
 
-  <a href = "movie_not_found.php">
-    <div <?php if($left_selected == "NOTFOUND")
+  <a href = "movies_songs.php">
+    <div <?php if($left_selected == "SONGS")
     { echo 'class="menu-left-current-page"'; } ?>>
-    <img src="./images/not_found.png">
-    <br/>NotFound<br/></div>
+    <img src="./images/songs.png">
+    <br/>Songs<br/></div>
   </a>
 
-  <a href = "movie_goofy.php">
-  	<div <?php if($left_selected == "GOOFY")
+  <a href = "movies_people.php">
+  	<div <?php if($left_selected == "PEOPLE")
   	{ echo 'class="menu-left-current-page"'; } ?>>
-  	<img src="./images/goofy.png">
-  	<br/>Goofy<br/></div>
+  	<img src="./images/people.png">
+  	<br/>People<br/></div>
   </a>
 
 
