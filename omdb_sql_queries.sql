@@ -43,3 +43,27 @@ FROM   movies mv
        LEFT JOIN people ppl
               ON ppl.id = mvp.people_id
 GROUP  BY mv.movie_id  
+
+
+
+
+
+--Sia Thao's query #45
+(SELECT DISTINCT `native_name`, `english_name`, `year_made` FROM `movies` 
+INNER JOIN `movie_people` ON movies.movie_id = movie_people.movie_id
+INNER JOIN `people` ON movie_people.people_id = people.people_id
+WHERE people.stage_name = 'Stage_Name1' OR people.stage_name = 'Stage_Name2')
+
+    **To do user input: change  'Stage_Name#' to '&people.stage_name'
+
+--Sia Thao's query #33
+(SELECT DISTINCT * FROM `movies` 
+LEFT JOIN `movie_data` ON movies.movie_id = movie_data.movie_id 
+LEFT JOIN `movie_trivia` ON movie_data.movie_id = movie_trivia.movie_id 
+LEFT JOIN `movie_keywords` ON movie_trivia.movie_id = movie_keywords.movie_id 
+LEFT JOIN `movie_media` ON movie_keywords.movie_id = movie_media.movie_id
+LEFT JOIN `movie_song` ON movie_media.movie_id = movie_song.movie_id 
+LEFT JOIN `songs` ON movie_song.song_id = songs.song_id 
+LEFT JOIN `movie_people` ON movies.movie_id = movie_people.movie_id 
+LEFT JOIN `people` ON movie_people.people_id = people.people_id)
+
