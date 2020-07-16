@@ -48,7 +48,6 @@ GROUP  BY mv.movie_id
 
 
 
-
 --Sia Thao's query #45
 (SELECT DISTINCT `native_name`, `english_name`, `year_made` FROM `movies` 
 INNER JOIN `movie_people` ON movies.movie_id = movie_people.movie_id
@@ -70,6 +69,9 @@ LEFT JOIN `people` ON movie_people.people_id = people.people_id)
 
    **I realized my query for #33 is wrong, as I forgot to look at the COUNT(). 
    **I thought we were just combining all the tables together. 
+
+
+
 
 -- Samuel Mwangi's Query # 34
 SELECT movie_id, english_name, native_name,
