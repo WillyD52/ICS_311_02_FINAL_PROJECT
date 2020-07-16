@@ -9,6 +9,7 @@ FROM   movies mv
        LEFT JOIN people ppl
               ON ppl.id = mvp.people_id
 WHERE  mvp.role LIKE '%Lead Actress%'
+AND ppl.stage_name = 'Katherine Hepburn'
 
 -- Zach Armstrong query 33
 SELECT mv.movie_id,
