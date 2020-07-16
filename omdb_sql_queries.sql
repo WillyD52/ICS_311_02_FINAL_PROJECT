@@ -67,3 +67,10 @@ LEFT JOIN `songs` ON movie_song.song_id = songs.song_id
 LEFT JOIN `movie_people` ON movies.movie_id = movie_people.movie_id 
 LEFT JOIN `people` ON movie_people.people_id = people.people_id)
 
+-- Sam's Query # 34
+SELECT movie_id, english_name, native_name,
+    SUBSTRING(native_name, 4, 7)
+FROM `movies
+
+--Sam's Query # 33
+
