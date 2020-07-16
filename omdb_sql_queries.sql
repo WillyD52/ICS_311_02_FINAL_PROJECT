@@ -52,7 +52,7 @@ GROUP  BY mv.movie_id
 (SELECT DISTINCT `native_name`, `english_name`, `year_made` FROM `movies` 
 INNER JOIN `movie_people` ON movies.movie_id = movie_people.movie_id
 INNER JOIN `people` ON movie_people.people_id = people.people_id
-WHERE people.stage_name = 'Stage_Name1' OR people.stage_name = 'Stage_Name2')
+WHERE people.stage_name = 'Stage_Name1' AND people.stage_name = 'Stage_Name2')
 
     **To do user input: change  'Stage_Name#' to '&people.stage_name'
 
