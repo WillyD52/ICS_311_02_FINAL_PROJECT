@@ -1,0 +1,90 @@
+Iteration 8:
+
+**I used Zach Armstrong's  (my teammate) query 33 to create my views as mine was wrong. Thanks Zach!
+
+CREATE VIEW `movie_view` AS
+(SELECT mv.movie_id,
+       mv.native_name,
+       mv.english_name,
+       mv.year_made,
+       mvdt.tag_line,
+       mvdt.language,
+       mvdt.country,
+       mvdt.genre,
+       mvdt.plot,
+       GROUP_CONCAT(DISTINCT mvtv.trivia)         AS 'Count movie trivia',
+       GROUP_CONCAT(DISTINCT mvkw.keyword)        AS 'Count movie keyword',
+       GROUP_CONCAT(DISTINCT mvmd.movie_media_id) AS 'Count movie media',
+       GROUP_CONCAT(DISTINCT mvsg.song_id)        AS 'Count soungs',
+       GROUP_CONCAT(DISTINCT ppl.people_id)       AS 'Count people'
+FROM   movies mv
+       LEFT JOIN movie_data mvdt
+              ON mvdt.movie_id = mv.movie_id
+       LEFT JOIN movie_trivia mvtv
+              ON mvtv.movie_id = mv.movie_id
+       LEFT JOIN movie_keywords mvkw
+              ON mvkw.movie_id = mv.movie_id
+       LEFT JOIN movie_media mvmd
+              ON mvmd.movie_id = mv.movie_id
+       LEFT JOIN movie_song mvsg
+              ON mvsg.movie_id = mv.movie_id
+       LEFT JOIN songs sgs
+              ON sgs.song_id = mvsg.song_id
+       LEFT JOIN movie_people mvp
+              ON mvp.movie_id = mv.movie_id
+       LEFT JOIN people ppl
+              ON ppl.people_id = mvp.people_id
+GROUP  BY mv.movie_id)  
+
+
+CREATE VIEW `people_view` AS
+(SELECT ppl.people_id,
+       ppl.stage_name,
+       ppl.first_name,
+       ppl.middle_name,
+       ppl.last_name,
+       ppl.gender,
+       ppl.image_name,
+       mvp.role,
+       mv.native_name,
+       mv.year_made,
+       GROUP_CONCAT(DISTINCT ppltv.people_trivia_name) AS 'Count people trivia',
+       GROUP_CONCAT(DISTINCT mv.movie_id) AS 'Count movies in'
+
+FROM   people ppl
+       LEFT JOIN movie_people mvp
+              ON ppl.people_id = mvp.people_id
+       LEFT JOIN song_people sppl
+              ON mvp.people_id = sppl.people_id
+       LEFT JOIN movies mv
+              ON mvp.movie_id = mv.movie_id
+       LEFT JOIN people_trivia ppltv
+              ON ppl.people_id = ppltv.people_id
+       GROUP  BY ppl.people_id)  
+
+
+CREATE VIEW `song_view` AS
+(SELECT sng.song_id,
+       sng.title,
+       sng.lyrics,
+       sng.theme,
+       ppl.first_name,
+       ppl.middle_name,
+       ppl.last_name,
+       sp.role,
+       sm.s_link,
+       GROUP_CONCAT(DISTINCT sgtv.song_trivia_name) AS 'Count song trivia',
+       GROUP_CONCAT(DISTINCT sk.keyword) AS 'Count song keywords'
+
+FROM   songs sng
+       LEFT JOIN song_people sp
+              ON sng.song_id = sp.song_id
+       LEFT JOIN people ppl
+              ON sp.people_id = ppl.people_id
+       LEFT JOIN song_media sm
+              ON sng.song_id = sm.song_id
+       LEFT JOIN song_trivia sgtv
+              ON sng.song_id = sgtv.song_id
+       LEFT JOIN song_keywords sk
+              ON sng.song_id = sk.song_id
+       GROUP  BY sng.song_id)  
